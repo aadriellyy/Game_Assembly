@@ -37,7 +37,7 @@ PERSO_POS3: .half 8,8
 OLD_PERSO_POS3: .half 8,8
 
 
-flag:		.byte 0 # essa flag � onde vamos guardar a condicao de verdade "faca isso ate que tal coisa aconteca"
+flag:		.byte 0 # essa flag é onde vamos guardar a condicao de verdade "faca isso ate que tal coisa aconteca"
 flag2:		.byte 0
 flag3:		.byte 0
 
@@ -49,7 +49,7 @@ ANTIGA_POSICAO_TIRO:	.half 0,0
 
 	j inicio
 	
-SETUP:		la a0,map1	#o registrador a0 vai receber o endereço do map1
+SETUP:		la a0,map1	#o registrador a0 vai receber o endereÃ§o do map1
 		la s1,matriz
 		addi s1,s1,8
 		li a1,0 			#a1 recebe 0
@@ -174,7 +174,7 @@ GAME_LOOP:
 
 		la a0,valk
 		lh a1,0(t0)
-		lh a2,2(t0) 			#é 2 pq estamos usando uma half word, se fosse word seria 4
+		lh a2,2(t0) 			#Ã© 2 pq estamos usando uma half word, se fosse word seria 4
 		mv a3,s0
 		li a4, 8
 		li a5, 8
@@ -184,7 +184,7 @@ GAME_LOOP:
 	
 		la a0,cinza
 		lh a1,0(t0)
-		lh a2,2(t0) 			#é 2 pq estamos usando uma half word, se fosse word seria 4
+		lh a2,2(t0) 			#Ã© 2 pq estamos usando uma half word, se fosse word seria 4
 		
 		mv a3,s0
 		xori a3,a3,1
@@ -195,7 +195,7 @@ GAME_LOOP:
 		li t0,1				# t0 recebe 1
 		lb t1, 0(a0)			# t1 recebe as informcoes do a0
 		
-		beq t1,t0,SETUP2		# se a flag for VERDADEIRA, ou seja, ele chegou na porta e esta com a chave, o c�digo vai fechar
+		beq t1,t0,SETUP2		# se a flag for VERDADEIRA, ou seja, ele chegou na porta e esta com a chave, o código vai fechar
 	
 		li t0,0xFF200604
 		sw s0,0(t0)
@@ -215,7 +215,7 @@ KEY2:		li t1,0xFF200000		# carrega o endereco de controle do KDMMIO
 		beq t2,t0,TIRO
 	
 		li t0,'a' 			#carrega no registrador uma tecla aleatoria que a gente escolhe
-		beq t2,t0,PER_ESQ		#faz uma comparacao entre 0 t0 e o t2 (t2 é a tecla que o  usuario clicou)
+		beq t2,t0,PER_ESQ		#faz uma comparacao entre 0 t0 e o t2 (t2 Ã© a tecla que o  usuario clicou)
 	
 		li t0,'d'
 		beq t2,t0,PER_DIR
@@ -526,8 +526,8 @@ LOOP_PRINT_TIRO_LEFT: beq s3,t5,GAME_LOOP
 
 CHAVE_PEGA:	
 		mv s11,zero				# movendo o zero pro s11
-		sh t2,0(t1) 				# passando as informa��es do s2 para o t1, que no caso � a antiga pori��o do personagem
-		sh t3, 2(t1)				# passando as informa��es do t3 para o proximo endere�o de t1
+		sh t2,0(t1) 				# passando as informações do s2 para o t1, que no caso é a antiga porição do personagem
+		sh t3, 2(t1)				# passando as informações do t3 para o proximo endereço de t1
 		sh s4,0(t0)
 		li s11,5
 		
@@ -542,7 +542,7 @@ PER_ESQ:	la t0, DIRECAO
 		li t1, 'a'
 		sb t1, 0(t0)
 		
-		la t0,PERSO_POS				#o personagem mover a esquerda é igual a diminuir o valor de x
+		la t0,PERSO_POS				#o personagem mover a esquerda Ã© igual a diminuir o valor de x
 		la t1,OLD_PERSO_POS			#pegando a posicao atual do personagem,antes de altera-la, e guardando
 		lh t2,0(t0)				#na antiga posicao
 		lh t3, 2(t0)
@@ -579,7 +579,7 @@ PER_ESQ:	la t0, DIRECAO
 PER_DIR:	la t0, DIRECAO
 		li t1, 'd'
 		sb t1, 0(t0)
-		la t0,PERSO_POS				#o personagem mover a esquerda é igual a diminuir o valor de x
+		la t0,PERSO_POS				#o personagem mover a esquerda Ã© igual a diminuir o valor de x
 		la t1,OLD_PERSO_POS			#pegando a posicao atual do personagem,antes de altera-la, e guardando
 		lh t2,0(t0)				#na antiga posicao
 		lh t3, 2(t0)
@@ -594,9 +594,9 @@ PER_DIR:	la t0, DIRECAO
 		li t5,1
 		beq s3,t5,FIM
 		
-		#verificar se o valor na posicao � igual ao valor que representa a chave na matriz
+		#verificar se o valor na posicao é igual ao valor que representa a chave na matriz
 		#se for a booleana de pegar a chave recebe 1
-		#quando a booleana da chave estiver em 1 eu n�o printo ela 
+		#quando a booleana da chave estiver em 1 eu não printo ela 
 		
 		lb s3,-8(s2)
 		li t5,3
@@ -665,14 +665,14 @@ PER_DOWN:	la t0, DIRECAO				#recebe em t0 a DIRECAO
 		
 		
 		lh s4,2(t0)				#passa para o s4 a posicao do personagem
-		addi s4,s4,8				#adiciona o s4 +8, que � a posicao personagem, fazemos isso para mover esse sprite para baixo
+		addi s4,s4,8				#adiciona o s4 +8, que é a posicao personagem, fazemos isso para mover esse sprite para baixo
 		li t5,320				
-		mul t5,s4,t5				#multiplica o t5 (linha) por s4 (guarda a pr�xima posicao do personagem) e guarda esse valor em t5
+		mul t5,s4,t5				#multiplica o t5 (linha) por s4 (guarda a próxima posicao do personagem) e guarda esse valor em t5
 		add s2,s1,t5				#soma o valor de s1 (valor da matriz) ao t5 (atual posicao do personagem) e armazema tudo em s2
-		add s2,s2,t2				#soma a posicao do personagem na matriz e no mapa (o s2) ao n�mero de linhas e armazena novamente em s2
+		add s2,s2,t2				#soma a posicao do personagem na matriz e no mapa (o s2) ao número de linhas e armazena novamente em s2
 		lb s3,0(s2)				#passa o valor do s2 para o s3
 		li t5,1
-		beq s3,t5,FIM				#compara se a posicao onde o personagem ser� printado � uma parede, se for ele retorna ao inicio do loop
+		beq s3,t5,FIM				#compara se a posicao onde o personagem será printado é uma parede, se for ele retorna ao inicio do loop
 		
 		lb s3,-8(s2)
 		li t5,3
@@ -695,8 +695,8 @@ PER_DOWN:	la t0, DIRECAO				#recebe em t0 a DIRECAO
 
 #	
 #	a0 = endereco da imagem que queremos imprimir, no caso o MAP1
-#	a1 = x - é a linha da imagem
-#	a2 = y - é  a coluna da imagem
+#	a1 = x - Ã© a linha da imagem
+#	a2 = y - Ã©  a coluna da imagem
 #	a3 = frame (0 ou 1)
 #	a4 = tamanho a pintar (linha)
 #	a5 = tamanho a pintar (coluna)
@@ -706,26 +706,26 @@ PER_DOWN:	la t0, DIRECAO				#recebe em t0 a DIRECAO
 #	t2 = contador de linha
 #	t3 = contado de coluna
 
-#      s1 = endere�o matriz
+#      s1 = endereço matriz
 
 
 
 
 
-PRINT:		li t0, 0xFF0 			#t0 vai recebero emdereço do bitamap
+PRINT:		li t0, 0xFF0 			#t0 vai recebero emdereÃ§o do bitamap
 		add t0,t0,a3 			#isso vai definir se o bitmap vai receber bit 1 ou bit 0
-		slli t0,t0,20 			#movendo o to 20 bits para a esquerda para dar o tamanho exato do endereço do bitmap
+		slli t0,t0,20 			#movendo o to 20 bits para a esquerda para dar o tamanho exato do endereÃ§o do bitmap
 		#endereco do bitmap esta feito
 	
 		add t0,t0,a1 			#aqui estamos adicionando o x (linha) ao t0(endereco da imagem)
 	
 		li t1,320 			#adicionando 320 ao t1 para poder multiplicar depois (qtd de pixels em uma linha)
-		 	 			#lembrando que em t1 tbm esta o endereço da imagem que queremos imprimir
-		mul t1,t1,a2 			#fazendo a multiplicação linha * 320 - desse modo o t1 vai guardar a proxima linha
+		 	 			#lembrando que em t1 tbm esta o endereÃ§o da imagem que queremos imprimir
+		mul t1,t1,a2 			#fazendo a multiplicaÃ§Ã£o linha * 320 - desse modo o t1 vai guardar a proxima linha
 		add t0,t0,t1 			#adicionando t1 + t0, dessa forma nos vamos adicionar a linha mais a coluna, para saber onde esta 
 			     			#localizado o proximo pixel que queremos printar 
 	
-		addi t1,a0,8 			#aqui nos adicionamos 8 ao a0 pois queremos que ele passe para o proximo endereço, depois movemos td para o t1
+		addi t1,a0,8 			#aqui nos adicionamos 8 ao a0 pois queremos que ele passe para o proximo endereÃ§o, depois movemos td para o t1
 	
 		mv t2,zero 			#zerando o t2
 		mv t3,zero 			#zerando o t3
@@ -755,9 +755,9 @@ PRINT_LINHA:
 
 	
 VERIFICAR:     
-	        la, a0,flag			# passando as informa��es da flag para o a0
+	        la, a0,flag			# passando as informações da flag para o a0
 		li t0,1				# passsando 1 para o t0
-		sb t0, 0(a0)			# passando as informa��es do t0 para o a0, ou seja, a flag agora vale 1
+		sb t0, 0(a0)			# passando as informações do t0 para o a0, ou seja, a flag agora vale 1
 		ret				# volta para o game loop
 		
 CONDICAO_DIREITA:
@@ -779,9 +779,9 @@ CONDICAO_ESQUERDA:
 		
 CONDICAO_UP:		
 		li t5,5 			# guardamos 5 no t5
-		bne t5,s11,FIM			# se t5 for diferente de s11 (isso significa que ele n�o tem a chave), voltamos para o in�cio do c�digo (GAME LOOP)
-		sh t2,0(t1)			# dessa parte do c�digo at� o verificar s� estamos guardando a posi��o correta do personagem conforme a dire��o que ele v�
-		sh t3, 2(t1)			# assim, o c�digo consegue detectar se ele est� tentando entrar na porta por todas as direcoes, pois temos uma condicao para cada
+		bne t5,s11,FIM			# se t5 for diferente de s11 (isso significa que ele não tem a chave), voltamos para o início do código (GAME LOOP)
+		sh t2,0(t1)			# dessa parte do código até o verificar só estamos guardando a posição correta do personagem conforme a direção que ele vá
+		sh t3, 2(t1)			# assim, o código consegue detectar se ele está tentando entrar na porta por todas as direcoes, pois temos uma condicao para cada
 		sh s4,2(t0)
 		j VERIFICAR
 		
@@ -795,36 +795,36 @@ CONDICAO_DOWN:
 
 inicio:		li t1,0xFF000000		# endereco inicial da Memoria VGA - Frame 0
 		li t2,0xFF012C00		# endereco final 
-		la s9,tela_principal		# endere�o dos dados da tela na memoria
-		addi s9,s9,8			# primeiro pixels depois das informa��es de nlin ncol
+		la s9,tela_principal		# endereï¿½o dos dados da tela na memoria
+		addi s9,s9,8			# primeiro pixels depois das informaï¿½ï¿½es de nlin ncol
 		
-LOOP_MUS:   	beq t1,t2,MUS           	# Se for o �ltimo endere�o ent�o sai do loop
+LOOP_MUS:   	beq t1,t2,MUS           	# Se for o ï¿½ltimo endereï¿½o entï¿½o sai do loop
 		lw t3,0(s9)			# le um conjunto de 4 pixels : word
-		sw t3,0(t1)			# escreve a word na mem�ria VGA
-		addi t1,t1,4			# soma 4 ao endere�o
+		sw t3,0(t1)			# escreve a word na memï¿½ria VGA
+		addi t1,t1,4			# soma 4 ao endereï¿½o
 		addi s9,s9,4
 		j LOOP_MUS			# volta a verificar
 
 
 
 
-MUS:		la s10,NUM			# define o endere�o do n�mero de notas
+MUS:		la s10,NUM			# define o endereï¿½o do nï¿½mero de notas
 		lw s9,0(s10)			# le o numero de notas
-		la s10,NOTAS			# define o endere�o das notas
+		la s10,NOTAS			# define o endereï¿½o das notas
 		li t0,0				# zera o contador de notas
 		li a2,105			# define o instrumento
 		li a3,127			# define o volume
 
 LOOP2:		beq t0,s9, SETUP
-		call KEY2			# contador chegou no final? ent�o  v� para FIM
+		call KEY2			# contador chegou no final? entï¿½o  vï¿½ para FIM
 		lw a0,0(s10)			# le o valor da nota
 		lw a1,4(s10)			# le a duracao da nota
 		li a7,31			# define a chamada de syscall
 		ecall				# toca a nota
-		mv a0,a1			# passa a dura��o da nota para a pausa
+		mv a0,a1			# passa a duraï¿½ï¿½o da nota para a pausa
 		li a7,32			# define a chamada de syscal 
 		ecall				# realiza uma pausa de a0 ms
-		addi s10,s10,8			# incrementa para o endere�o da pr�xima nota
+		addi s10,s10,8			# incrementa para o endereï¿½o da prï¿½xima nota
 		addi t0,t0,1			# incrementa o contador de notas
 		j LOOP2				# volta ao loop		
 
@@ -898,7 +898,7 @@ FIM:
 ##########FASE 2############
 
 SETUP2:		
-		la a0,map2	#o registrador a0 vai receber o endereço do map1
+		la a0,map2	#o registrador a0 vai receber o endereÃ§o do map1
 		la s1,matriz2
 		addi s1,s1,8
 		li a1,0 			#a1 recebe 0
@@ -1011,7 +1011,7 @@ GAME_LOOP2:
 
 		la a0,valk
 		lh a1,0(t0)
-		lh a2,2(t0) 			#é 2 pq estamos usando uma half word, se fosse word seria 4
+		lh a2,2(t0) 			#Ã© 2 pq estamos usando uma half word, se fosse word seria 4
 		mv a3,s0
 		li a4, 8
 		li a5, 8
@@ -1021,7 +1021,7 @@ GAME_LOOP2:
 	
 		la a0,cinza
 		lh a1,0(t0)
-		lh a2,2(t0) 			#é 2 pq estamos usando uma half word, se fosse word seria 4
+		lh a2,2(t0) 			#Ã© 2 pq estamos usando uma half word, se fosse word seria 4
 		
 		mv a3,s0
 		xori a3,a3,1
@@ -1032,7 +1032,7 @@ GAME_LOOP2:
 		li t0,1				# t0 recebe 1
 		lb t1, 0(a0)			# t1 recebe as informcoes do a0
 		
-		beq t1,t0,SETUP3		# se a flag for VERDADEIRA, ou seja, ele chegou na porta e esta com a chave, o c�digo vai fechar
+		beq t1,t0,SETUP3		# se a flag for VERDADEIRA, ou seja, ele chegou na porta e esta com a chave, o código vai fechar
 	
 		li t0,0xFF200604
 		sw s0,0(t0)
@@ -1051,7 +1051,7 @@ KEY3:
 		beq t2,t0,TIRO2
 	
 		li t0,'a' 			#carrega no registrador uma tecla aleatoria que a gente escolhe
-		beq t2,t0,PER_ESQ2		#faz uma comparacao entre 0 t0 e o t2 (t2 é a tecla que o  usuario clicou)
+		beq t2,t0,PER_ESQ2		#faz uma comparacao entre 0 t0 e o t2 (t2 Ã© a tecla que o  usuario clicou)
 	
 		li t0,'d'
 		beq t2,t0,PER_DIR2
@@ -1353,7 +1353,7 @@ PER_ESQ2:	la t0, DIRECAO
 		li t1, 'a'
 		sb t1, 0(t0)
 		
-		la t0,PERSO_POS2			#o personagem mover a esquerda é igual a diminuir o valor de x
+		la t0,PERSO_POS2			#o personagem mover a esquerda Ã© igual a diminuir o valor de x
 		la t1,OLD_PERSO_POS2			#pegando a posicao atual do personagem,antes de altera-la, e guardando
 		lh t2,0(t0)				#na antiga posicao
 		lh t3, 2(t0)
@@ -1390,7 +1390,7 @@ PER_ESQ2:	la t0, DIRECAO
 PER_DIR2:	la t0, DIRECAO
 		li t1, 'd'
 		sb t1, 0(t0)
-		la t0,PERSO_POS2		#o personagem mover a esquerda é igual a diminuir o valor de x
+		la t0,PERSO_POS2		#o personagem mover a esquerda Ã© igual a diminuir o valor de x
 		la t1,OLD_PERSO_POS2			#pegando a posicao atual do personagem,antes de altera-la, e guardando
 		lh t2,0(t0)				#na antiga posicao
 		lh t3, 2(t0)
@@ -1405,9 +1405,9 @@ PER_DIR2:	la t0, DIRECAO
 		li t5,1
 		beq s3,t5,FIM2
 		
-		#verificar se o valor na posicao � igual ao valor que representa a chave na matriz
+		#verificar se o valor na posicao é igual ao valor que representa a chave na matriz
 		#se for a booleana de pegar a chave recebe 1
-		#quando a booleana da chave estiver em 1 eu n�o printo ela 
+		#quando a booleana da chave estiver em 1 eu não printo ela 
 		
 		lb s3,-8(s2)
 		li t5,3
@@ -1476,14 +1476,14 @@ PER_DOWN2:	la t0, DIRECAO				#recebe em t0 a DIRECAO
 		
 		
 		lh s4,2(t0)				#passa para o s4 a posicao do personagem
-		addi s4,s4,8				#adiciona o s4 +8, que � a posicao personagem, fazemos isso para mover esse sprite para baixo
+		addi s4,s4,8				#adiciona o s4 +8, que é a posicao personagem, fazemos isso para mover esse sprite para baixo
 		li t5,320				
-		mul t5,s4,t5				#multiplica o t5 (linha) por s4 (guarda a pr�xima posicao do personagem) e guarda esse valor em t5
+		mul t5,s4,t5				#multiplica o t5 (linha) por s4 (guarda a próxima posicao do personagem) e guarda esse valor em t5
 		add s2,s1,t5				#soma o valor de s1 (valor da matriz) ao t5 (atual posicao do personagem) e armazema tudo em s2
-		add s2,s2,t2				#soma a posicao do personagem na matriz e no mapa (o s2) ao n�mero de linhas e armazena novamente em s2
+		add s2,s2,t2				#soma a posicao do personagem na matriz e no mapa (o s2) ao número de linhas e armazena novamente em s2
 		lb s3,0(s2)				#passa o valor do s2 para o s3
 		li t5,1
-		beq s3,t5,FIM2				#compara se a posicao onde o personagem ser� printado � uma parede, se for ele retorna ao inicio do loop
+		beq s3,t5,FIM2				#compara se a posicao onde o personagem será printado é uma parede, se for ele retorna ao inicio do loop
 		
 		lb s3,0(s2)
 		li t5,3
@@ -1546,17 +1546,17 @@ PRINT_SCORE2:
 		
 CHAVE_PEGA2:	
 		mv s11,zero				# movendo o zero pro s11
-		sh t2,0(t1) 				# passando as informa��es do s2 para o t1, que no caso � a antiga pori��o do personagem
-		sh t3, 2(t1)				# passando as informa��es do t3 para o proximo endere�o de t1
+		sh t2,0(t1) 				# passando as informações do s2 para o t1, que no caso é a antiga porição do personagem
+		sh t3, 2(t1)				# passando as informações do t3 para o proximo endereço de t1
 		sh s4,0(t0)
 		li s11,5
 		
 		j EFEITO	
 		ret
 VERIFICAR2:     
-	        la, a0,flag2			# passando as informa��es da flag para o a0
+	        la, a0,flag2			# passando as informações da flag para o a0
 		li t0,1				# passsando 1 para o t0
-		sb t0, 0(a0)			# passando as informa��es do t0 para o a0, ou seja, a flag agora vale 1
+		sb t0, 0(a0)			# passando as informações do t0 para o a0, ou seja, a flag agora vale 1
 		ret				# volta para o game loop
 		
 CONDICAO_DIREITA2:
@@ -1578,9 +1578,9 @@ CONDICAO_ESQUERDA2:
 		
 CONDICAO_UP2:		
 		li t5,5 			# guardamos 5 no t5
-		bne t5,s11,FIM2			# se t5 for diferente de s11 (isso significa que ele n�o tem a chave), voltamos para o in�cio do c�digo (GAME LOOP)
-		sh t2,0(t1)			# dessa parte do c�digo at� o verificar s� estamos guardando a posi��o correta do personagem conforme a dire��o que ele v�
-		sh t3, 2(t1)			# assim, o c�digo consegue detectar se ele est� tentando entrar na porta por todas as direcoes, pois temos uma condicao para cada
+		bne t5,s11,FIM2			# se t5 for diferente de s11 (isso significa que ele não tem a chave), voltamos para o início do código (GAME LOOP)
+		sh t2,0(t1)			# dessa parte do código até o verificar só estamos guardando a posição correta do personagem conforme a direção que ele vá
+		sh t3, 2(t1)			# assim, o código consegue detectar se ele está tentando entrar na porta por todas as direcoes, pois temos uma condicao para cada
 		sh s4,2(t0)
 		j VERIFICAR2
 		
@@ -1603,7 +1603,7 @@ SAIDA2:
 ###################################################
 #                      FASE 3                     #
 ###################################################
-SETUP3:		la a0,map3	#o registrador a0 vai receber o endereço do map1
+SETUP3:		la a0,map3	#o registrador a0 vai receber o endereÃ§o do map1
 		la s1,matriz3
 		addi s1,s1,8
 		li a1,0 			#a1 recebe 0
@@ -1716,7 +1716,7 @@ GAME_LOOP3:
 
 		la a0,valk
 		lh a1,0(t0)
-		lh a2,2(t0) 			#é 2 pq estamos usando uma half word, se fosse word seria 4
+		lh a2,2(t0) 			#Ã© 2 pq estamos usando uma half word, se fosse word seria 4
 		mv a3,s0
 		li a4, 8
 		li a5, 8
@@ -1726,7 +1726,7 @@ GAME_LOOP3:
 	
 		la a0,cinza
 		lh a1,0(t0)
-		lh a2,2(t0) 			#é 2 pq estamos usando uma half word, se fosse word seria 4
+		lh a2,2(t0) 			#Ã© 2 pq estamos usando uma half word, se fosse word seria 4
 		
 		mv a3,s0
 		xori a3,a3,1
@@ -1737,7 +1737,7 @@ GAME_LOOP3:
 		li t0,1				# t0 recebe 1
 		lb t1, 0(a0)			# t1 recebe as informcoes do a0
 		
-		beq t1,t0,SAIDA3		# se a flag for VERDADEIRA, ou seja, ele chegou na porta e esta com a chave, o c�digo vai fechar
+		beq t1,t0,SAIDA3		# se a flag for VERDADEIRA, ou seja, ele chegou na porta e esta com a chave, o código vai fechar
 	
 		li t0,0xFF200604
 		sw s0,0(t0)
@@ -1756,7 +1756,7 @@ KEY4:
 		beq t2,t0,TIRO3
 	
 		li t0,'a' 			#carrega no registrador uma tecla aleatoria que a gente escolhe
-		beq t2,t0,PER_ESQ3		#faz uma comparacao entre 0 t0 e o t2 (t2 é a tecla que o  usuario clicou)
+		beq t2,t0,PER_ESQ3		#faz uma comparacao entre 0 t0 e o t2 (t2 Ã© a tecla que o  usuario clicou)
 	
 		li t0,'d'
 		beq t2,t0,PER_DIR3
@@ -1855,7 +1855,7 @@ LOOP_PRINT_TIRO_UP3: beq s3,t5,GAME_LOOP3
 		call PRINT
 		
 		li t0, 8
-		blt a2, t0, GAME_LOOP3			#compara se a posicao onde o personagem ser� printado � uma parede, se for ele retorna ao inicio do loop
+		blt a2, t0, GAME_LOOP3			#compara se a posicao onde o personagem será printado é uma parede, se for ele retorna ao inicio do loop
 	
 	
 	j  LOOP_PRINT_TIRO_UP3
@@ -2052,7 +2052,7 @@ PER_ESQ3:	la t0, DIRECAO
 		li t1, 'a'
 		sb t1, 0(t0)
 		
-		la t0,PERSO_POS3			#o personagem mover a esquerda é igual a diminuir o valor de x
+		la t0,PERSO_POS3			#o personagem mover a esquerda Ã© igual a diminuir o valor de x
 		la t1,OLD_PERSO_POS3			#pegando a posicao atual do personagem,antes de altera-la, e guardando
 		lh t2,0(t0)				#na antiga posicao
 		lh t3, 2(t0)
@@ -2089,7 +2089,7 @@ PER_ESQ3:	la t0, DIRECAO
 PER_DIR3:	la t0, DIRECAO
 		li t1, 'd'
 		sb t1, 0(t0)
-		la t0,PERSO_POS3		#o personagem mover a esquerda é igual a diminuir o valor de x
+		la t0,PERSO_POS3		#o personagem mover a esquerda Ã© igual a diminuir o valor de x
 		la t1,OLD_PERSO_POS3			#pegando a posicao atual do personagem,antes de altera-la, e guardando
 		lh t2,0(t0)				#na antiga posicao
 		lh t3, 2(t0)
@@ -2104,9 +2104,9 @@ PER_DIR3:	la t0, DIRECAO
 		li t5,1
 		beq s3,t5,FIM3
 		
-		#verificar se o valor na posicao � igual ao valor que representa a chave na matriz
+		#verificar se o valor na posicao é igual ao valor que representa a chave na matriz
 		#se for a booleana de pegar a chave recebe 1
-		#quando a booleana da chave estiver em 1 eu n�o printo ela 
+		#quando a booleana da chave estiver em 1 eu não printo ela 
 		
 		lb s3,0(s2)
 		li t5,3
@@ -2175,14 +2175,14 @@ PER_DOWN3:	la t0, DIRECAO				#recebe em t0 a DIRECAO
 		
 		
 		lh s4,2(t0)				#passa para o s4 a posicao do personagem
-		addi s4,s4,8				#adiciona o s4 +8, que � a posicao personagem, fazemos isso para mover esse sprite para baixo
+		addi s4,s4,8				#adiciona o s4 +8, que é a posicao personagem, fazemos isso para mover esse sprite para baixo
 		li t5,320				
-		mul t5,s4,t5				#multiplica o t5 (linha) por s4 (guarda a pr�xima posicao do personagem) e guarda esse valor em t5
+		mul t5,s4,t5				#multiplica o t5 (linha) por s4 (guarda a próxima posicao do personagem) e guarda esse valor em t5
 		add s2,s1,t5				#soma o valor de s1 (valor da matriz) ao t5 (atual posicao do personagem) e armazema tudo em s2
-		add s2,s2,t2				#soma a posicao do personagem na matriz e no mapa (o s2) ao n�mero de linhas e armazena novamente em s2
+		add s2,s2,t2				#soma a posicao do personagem na matriz e no mapa (o s2) ao número de linhas e armazena novamente em s2
 		lb s3,0(s2)				#passa o valor do s2 para o s3
 		li t5,1
-		beq s3,t5,FIM3				#compara se a posicao onde o personagem ser� printado � uma parede, se for ele retorna ao inicio do loop
+		beq s3,t5,FIM3				#compara se a posicao onde o personagem será printado é uma parede, se for ele retorna ao inicio do loop
 		
 		lb s3,0(s2)
 		li t5,3
@@ -2245,17 +2245,17 @@ PRINT_SCORE3:
 		
 CHAVE_PEGA3:	
 		mv s11,zero				# movendo o zero pro s11
-		sh t2,0(t1) 				# passando as informa��es do s2 para o t1, que no caso � a antiga pori��o do personagem
-		sh t3, 2(t1)				# passando as informa��es do t3 para o proximo endere�o de t1
+		sh t2,0(t1) 				# passando as informações do s2 para o t1, que no caso é a antiga porição do personagem
+		sh t3, 2(t1)				# passando as informações do t3 para o proximo endereço de t1
 		sh s4,0(t0)
 		li s11,5
 		
 		j EFEITO	
 		ret
 VERIFICAR3:     
-	        la, a0,flag3			# passando as informa��es da flag para o a0
+	        la, a0,flag3			# passando as informações da flag para o a0
 		li t0,1				# passsando 1 para o t0
-		sb t0, 0(a0)			# passando as informa��es do t0 para o a0, ou seja, a flag agora vale 1
+		sb t0, 0(a0)			# passando as informações do t0 para o a0, ou seja, a flag agora vale 1
 		ret				# volta para o game loop
 		
 CONDICAO_DIREITA3:
@@ -2277,9 +2277,9 @@ CONDICAO_ESQUERDA3:
 		
 CONDICAO_UP3:		
 		li t5,5 			# guardamos 5 no t5
-		bne t5,s11,FIM3		# se t5 for diferente de s11 (isso significa que ele n�o tem a chave), voltamos para o in�cio do c�digo (GAME LOOP)
-		sh t2,0(t1)			# dessa parte do c�digo at� o verificar s� estamos guardando a posi��o correta do personagem conforme a dire��o que ele v�
-		sh t3, 2(t1)			# assim, o c�digo consegue detectar se ele est� tentando entrar na porta por todas as direcoes, pois temos uma condicao para cada
+		bne t5,s11,FIM3		# se t5 for diferente de s11 (isso significa que ele não tem a chave), voltamos para o início do código (GAME LOOP)
+		sh t2,0(t1)			# dessa parte do código até o verificar só estamos guardando a posição correta do personagem conforme a direção que ele vá
+		sh t3, 2(t1)			# assim, o código consegue detectar se ele está tentando entrar na porta por todas as direcoes, pois temos uma condicao para cada
 		sh s4,2(t0)
 		j VERIFICAR3
 		
@@ -2294,7 +2294,7 @@ CONDICAO_DOWN3:
 FIM3:		
 		ret				# retorna
 
-SAIDA3:		la a0,victory	#o registrador a0 vai receber o endereço do map1
+SAIDA3:		la a0,victory	#o registrador a0 vai receber o endereÃ§o do map1
 		li a1,0 			#a1 recebe 0
 		li a2,0 			#a2 recebe 0
 		li a3,0				#a3 recebe 0
